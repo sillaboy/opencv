@@ -21,10 +21,10 @@ android {
     /** open cv 配置 **/
     /*禁止自带的ndk*/
     sourceSets.main.jni.srcDirs = [];
-    sourceSets.main.jniLibs.srcDirs = ['src/main/libs','src/main/jniLibs']
+    sourceSets.main.jniLibs.srcDirs = ['src/main/libs', 'src/main/jniLibs']
     //重定向so目录为src/main/libs和src/main/jniLibs，原来为src/main/jniLibs
 
-    task ndkBuild (type: Exec, description: 'Compile JNI source with NDK') {
+    task ndkBuild(type: Exec, description: 'Compile JNI source with NDK') {
         Properties properties = new Properties()
         properties.load(project.rootProject.file('local.properties').newDataInputStream())
         def ndkDir = properties.getProperty('ndk.dir')
@@ -46,9 +46,9 @@ android {
         def ndkDir = properties.getProperty('ndk.dir')
 
         if (org.apache.tools.ant.taskdefs.condition.Os.isFamily(org.apache.tools.ant.taskdefs.condition.Os.FAMILY_WINDOWS)) {
-            commandLine "$ndkDir/ndk-build.cmd",'clean', '-C', file('src/main/jni').absolutePath
+            commandLine "$ndkDir/ndk-build.cmd", 'clean', '-C', file('src/main/jni').absolutePath
         } else {
-            commandLine "$ndkDir/ndk-build",'clean', '-C', file('src/main/jni').absolutePath
+            commandLine "$ndkDir/ndk-build", 'clean', '-C', file('src/main/jni').absolutePath
         }
     }
     clean.dependsOn 'ndkClean'
@@ -58,4 +58,5 @@ dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     testCompile 'junit:junit:4.12'
     compile 'com.android.support:appcompat-v7:24.2.0'
+    compile 'com.android.support:design:24.2.0'
 }

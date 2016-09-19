@@ -1,11 +1,14 @@
 package com.example.yunlongzhang.opencvtest;
 
 import android.annotation.TargetApi;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 
 import com.example.yunlongzhang.opencvtest.Helper.OpenCVHelper;
@@ -28,5 +31,14 @@ public class MainActivity extends AppCompatActivity {
         Bitmap result = Bitmap.createBitmap(w,h, Bitmap.Config.RGB_565);
         result.setPixels(resultPixes, 0, w, 0, 0,w, h);
         img.setImageBitmap(result);
+
+        Button bt = (Button) findViewById(R.id.distance);
+        bt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent mIntent = new Intent(MainActivity.this, CamaraActivity.class);
+                startActivity(mIntent);
+            }
+        });
     }
 }
