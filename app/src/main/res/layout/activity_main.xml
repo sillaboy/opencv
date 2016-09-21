@@ -23,4 +23,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="相机测距"/>
+
+    <Button
+        android:id="@+id/float_view"
+        android:layout_below="@id/distance"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="打开悬浮窗"/>
 </RelativeLayout>

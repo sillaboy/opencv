@@ -2,21 +2,18 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-    <TextView
+    <FrameLayout
+        android:id="@+id/camera_preview"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_weight="1"
+        />
+
+    <Button
+        android:id="@+id/button_capture"
+        android:text="Capture"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="测试相机框框"/>
-
-    <FrameLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
-        <SurfaceView
-            android:id="@+id/sv_cam_prev"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-        <com.example.yunlongzhang.opencvtest.view.DrawImageView
-            android:id="@+id/dv_overlay"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-    </FrameLayout>
+        android:layout_gravity="center"
+        />
 </LinearLayout>

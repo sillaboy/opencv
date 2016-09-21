@@ -7,13 +7,17 @@ import android.graphics.drawable.BitmapDrawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 
 import com.example.yunlongzhang.opencvtest.Helper.OpenCVHelper;
+import com.example.yunlongzhang.opencvtest.view.FloatingWindowView;
 
 public class MainActivity extends AppCompatActivity {
+
+    FloatingWindowView floatingWindowView;
 
     @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     @Override
@@ -33,11 +37,35 @@ public class MainActivity extends AppCompatActivity {
         img.setImageBitmap(result);
 
         Button bt = (Button) findViewById(R.id.distance);
+        Button btfloat = (Button) findViewById(R.id.float_view);
         bt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent mIntent = new Intent(MainActivity.this, CamaraActivity.class);
                 startActivity(mIntent);
+            }
+        });
+        btfloat.setOnClickListener(new View.OnClickListener(){
+
+            @Override
+            public void onClick(View view) {
+                if (floatingWindowView == null) {
+                    floatingWindowView = new FloatingWindowView(getBaseContext());
+                    floatingWindowView.show();
+                    ((Button)(view)).setText("关闭悬浮窗");
+                    Log.e("TAG", "关闭悬浮窗1");
+                } else {
+                    if (floatingWindowView.getViewStatus()) {
+                        floatingWindowView.hide();
+                        ((Button)(view)).setText("打开悬浮窗");
+                        Log.e("TAG", "打开悬浮窗");
+
+                    } else {
+                        floatingWindowView.show();
+                        ((Button)(view)).setText("关闭悬浮窗");
+                        Log.e("TAG", "关闭悬浮窗2");
+                    }
+                }
             }
         });
     }
